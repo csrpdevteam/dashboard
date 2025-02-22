@@ -1,6 +1,6 @@
 <script>
-    import { Navigate } from 'svelte-router-spa';
-    import { getAvatarUrl, getDefaultIcon } from "../js/icons";
+    import {Navigate} from 'svelte-router-spa'
+    import {getAvatarUrl, getDefaultIcon} from "../js/icons";
 
     export let userData;
 
@@ -11,19 +11,21 @@
             e.target.src = getDefaultIcon(userId);
         }
     }
+
 </script>
 
 <div class="sidebar">
   <div class="sidebar-container" id="sidebar-nav">
     <div class="inner">
-      <Navigate to="/" class="sidebar-link">
+      <Navigate to="/" styles="sidebar-link">
         <div class="sidebar-element">
           <i class="fas fa-server sidebar-icon"></i>
           <span class="sidebar-text">Servers</span>
         </div>
       </Navigate>
-      {#if userData?.admin}
-        <Navigate to="/admin/bot-staff" class="sidebar-link">
+
+      {#if userData.admin}
+        <Navigate to="/admin/bot-staff" styles="sidebar-link">
           <div class="sidebar-element">
             <i class="fa-solid fa-user-secret sidebar-icon"></i>
             <span class="sidebar-text">Admin</span>
@@ -34,16 +36,17 @@
   </div>
   <div class="sidebar-container">
     <div class="sidebar-element">
-      <Navigate to="/logout" class="sidebar-link" on:click={() => clearLocalStorage()}>
-        <i class="sidebar-icon fas fa-sign-out-alt"></i>
+      <Navigate to="/logout" onclick="clearLocalStorage();" styles="sidebar-link">
+        <i class="sidebar-icon fas fa-sign-out-alt sidebar-icon"></i>
         <span class="sidebar-text">Logout</span>
       </Navigate>
     </div>
     <div class="sidebar-element user-element">
       <a class="sidebar-link">
-        <img class="avatar" src={getAvatarUrl(userData?.id, userData?.avatar)}
-          on:error={(e) => handleAvatarLoadError(e, userData?.id)} alt="Avatar"/>
-        <span class="sidebar-text">{userData?.username}</span>
+        <img class="avatar" src={getAvatarUrl(userData.id, userData.avatar)}
+          on:error={(e) => handleAvatarLoadError(e, userData.id)} alt="Avatar"/>
+
+        <span class="sidebar-text">{userData.username}</span>
       </a>
     </div>
   </div>
@@ -83,7 +86,15 @@
         transition: background-color 0.5s ease;
     }
 
-    .sidebar-link {
+    #custom-image {
+        max-height: 70px;
+        max-width: 90%;
+    }
+
+    /*
+     * Need global for Navigate link styling
+     */
+    :global(.sidebar-link) {
         display: flex;
         align-items: center;
         color: white !important;
@@ -102,6 +113,18 @@
         flex: 1;
     }
 
+    .ref {
+        display: flex;
+        justify-content: center;
+    }
+
+    .ref-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 10px 0;
+        margin: 0 !important
+    }
+
     .avatar {
         width: 32px;
         height: 32px;
@@ -114,9 +137,15 @@
         .sidebar {
             flex-direction: row;
             width: 100%;
+
             height: unset;
             min-width: unset;
+
             overflow: visible !important;
+        }
+
+        .ref {
+            display: none;
         }
 
         .sidebar-container {
@@ -130,6 +159,10 @@
         .sidebar-element {
             width: unset;
             padding: 20px 15px;
+        }
+
+        :global(.sidebar-link) {
+            width: unset;
         }
 
         .user-element {
