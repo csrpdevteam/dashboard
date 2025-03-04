@@ -70,7 +70,7 @@ func (p *panelMessageData) send(c *botcontext.BotContext) (uint64, error) {
 	}
 
 	if !p.IsPremium {
-		e.SetFooter("Powered by ticketsbot.cloud", "https://ticketsbot.cloud/assets/img/logo.png")
+		e.SetFooter("Powered by CSRP Tickets", "https://csrputilities.s3.us-east-1.amazonaws.com/csrp.png")
 	}
 
 	data := rest.CreateMessageData{
