@@ -39,7 +39,7 @@ func multiPanelIntoMessageData(panel database.MultiPanel, isPremium bool) multiP
 func (d *multiPanelMessageData) send(ctx *botcontext.BotContext, panels []database.Panel) (uint64, error) {
 	if !d.IsPremium {
 		// TODO: Don't harcode
-		d.Embed.SetFooter("Powered by ticketsbot.cloud", "https://ticketsbot.cloud/assets/img/logo.png")
+		d.Embed.SetFooter("Powered by CSRP Tickets", "https://csrputilities.s3.us-east-1.amazonaws.com/csrp.png")
 	}
 
 	var components []component.Component
