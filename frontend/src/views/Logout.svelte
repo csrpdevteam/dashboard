@@ -14,7 +14,7 @@
       }
 
       clearLocalStorage()
-      window.location.href = 'https://tickets.officialcaliforniastateroleplay.com'
+      window.location.href = 'https://tickets.officialcaliforniastateroleplay.com/logout'
   }
 
   process()
